@@ -14,8 +14,11 @@ if (isProduction) {
     app.set("trust proxy", 1);
 }
 
-// Middleware
-app.use(cors());
+// Middleware (Enable CORS for GitHub Pages and any client)
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 app.use(express.json());
 
 // Log all requests in PowerShell / console
