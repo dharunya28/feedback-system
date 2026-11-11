@@ -155,7 +155,9 @@ app.get("/api/getfeedback", async (req, res) => {
 });
 
 // FRONTEND STATIC ASSETS (Serve built React client in production)
-const clientDist = path.join(__dirname, "../client/dist");
+const clientDist = fs.existsSync(path.join(__dirname, "../docs"))
+    ? path.join(__dirname, "../docs")
+    : path.join(__dirname, "../client/dist");
 
 if (fs.existsSync(clientDist)) {
     app.use(express.static(clientDist));

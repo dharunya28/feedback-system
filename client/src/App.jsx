@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API = import.meta.env.VITE_API_URL || "";
+// Render Backend API URL (used when page is opened on GitHub Pages)
+const RENDER_BACKEND_URL = "https://feedback-system.onrender.com";
+
+const API = window.location.origin.includes("github.io")
+  ? (import.meta.env.VITE_API_URL || RENDER_BACKEND_URL)
+  : (import.meta.env.VITE_API_URL || "");
 
 function App() {
   const [page, setPage] = useState("form");
